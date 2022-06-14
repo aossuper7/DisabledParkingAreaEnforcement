@@ -8,3 +8,7 @@ class MyView(View):
     @request_mapping("/", method="get")
     def home(self, request):
         return render(request, 'index.html')
+
+    @request_mapping("/check", method="get")
+    def check_parking(self, request):
+        return render(request, 'check-parking.html')
