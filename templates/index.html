@@ -47,10 +47,11 @@
 
     <!-- Helpers -->
     <script src="{% static 'js/helpers.js' %}"></script>
-
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js"></script>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{% static 'js/config.js' %}"></script>
+    <script src="{% static 'js/mqtt.js' %}"></script>
   </head>
 
   <body>
@@ -156,7 +157,7 @@
                       <div class="col-sm-7">
                         <div class="card-body">
                           <h5 class="card-title">입차 차량</h5>
-                          <img src="#" id="enterCar" width="600" height="400"/>
+                          <img src="#" id="enterCar" width="135%" height="400"/>
                         </div>
                       </div>
                     </div>
@@ -170,17 +171,17 @@
                           <div class="card-title d-flex align-items-start justify-content-between">
                             <div>
                               <h5 class="card-title">주차 상황</h5>
-                              <div style="background-color:blue; height:70px; width:70px; text-align:center; display:inline-block;">
+                              <div id="space1" style="background-color:blue; height:70px; width:70px; text-align:center; display:inline-block;">
                                 <span style="font-size:20px; color:white;"><b>1</b></span>
                                 <span><img src="{% static 'img/icons8-handicap-parking-32.png' %}" style="text-align:center"></span>
                               </div>
-                              <div style="background-color:blue; height:70px; width:70px; text-align:center; display:inline-block;">
+                              <div id="space2" style="background-color:blue; height:70px; width:70px; text-align:center; display:inline-block;">
                                 <span style="font-size:20px; color:white;"><b>2</b></span>
                               </div>
-                              <div style="background-color:blue; height:70px; width:70px; text-align:center; display:inline-block">
+                              <div id="space3" style="background-color:blue; height:70px; width:70px; text-align:center; display:inline-block">
                                 <span style="font-size:20px; color:white;"><b>3</b></span>
                               </div>
-                              <div style="background-color:blue; height:70px; width:70px; text-align:center; display:inline-block">
+                              <div id="space4" style="background-color:blue; height:70px; width:70px; text-align:center; display:inline-block">
                                 <span style="font-size:20px; color:white;"><b>4</b></span>
                               </div>
                             </div>
