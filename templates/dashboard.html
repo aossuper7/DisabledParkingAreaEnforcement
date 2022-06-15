@@ -51,6 +51,7 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{% static 'js/config.js' %}"></script>
+    <script src="{% static 'js/mqtt.js' %}"></script>
   </head>
 
   <body>
@@ -190,6 +191,11 @@
                               </div>
                               <div style="background-color:blue; height:70px; width:70px; text-align:center; display:inline-block">
                                 <span style="font-size:20px; color:white;"><b>4</b></span>
+                              </div>
+                              <br><br>
+                              <div>
+                                전체 4대 / <span id="allSapce">0대</span><br>
+                                장애 1대 / <span id="disability">0대</span>
                               </div>
                             </div>
                           </div>
