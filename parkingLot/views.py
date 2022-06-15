@@ -12,3 +12,7 @@ class MyView(View):
     @request_mapping("/check", method="get")
     def check_parking(self, request):
         return render(request, 'check-parking.html')
+
+    @request_mapping("/dashboard", method="get")
+    def dashboard(self, request):
+        return render(request, 'dashboard.html')
