@@ -1,9 +1,12 @@
 var host = "3.25.85.102";
 var port = 9001;
 var mqtt;
-var handicapSpace = 0;
-var spaceAll = 0;
-
+var dicSpace = {};
+dicSpace['space1'];
+dicSpace['space2'];
+dicSpace['space3'];
+dicSpace['space4'];
+var empty = 0;
 
 function onConnect() {
     console.log("접속 성공");
@@ -22,21 +25,27 @@ function onMessageArrived(msg) {
         document.getElementById("enterCar").src = "data:image/jpeg;base64,"+btoa(String.fromCharCode.apply(null,msg.payloadBytes));
     else if(topic[1] == "space1") {
         spaceColor(topic[1], message);
-        handicap(message);
-        document.getElementById("disability").innerHTML = handicapSpace + "대";
+        dicSpace['space1'] = parseInt(message);
+        document.getElementById("disability").innerHTML = dicSpace['space1'] + "대";
     }
-    else if(topic[1] == "space2")
+    else if(topic[1] == "space2") {
         spaceColor(topic[1], message);
-    else if(topic[1] == "space3")
+        dicSpace['space2'] = parseInt(message);
+    }
+    else if(topic[1] == "space3") {
         spaceColor(topic[1], message);
-    else if(topic[1] == "space4")
+        dicSpace['space3'] = parseInt(message);
+    }
+    else if(topic[1] == "space4") {
         spaceColor(topic[1], message);
-}
+        dicSpace['space4'] = parseInt(message);
+    }
+    for(value in dicSpace)
+        empty += dicSpace[value];
+    console.log(empty);
 
-function handicap(value) {
-    handicapSpace += parseInt(value);
-    if (handicapSpace < 0)
-        handicapSpace = 0;
+    document.getElementById('allSapce').innerHTML = empty + "대";
+    empty = 0;
 }
 
 function spaceColor(name, value) {
