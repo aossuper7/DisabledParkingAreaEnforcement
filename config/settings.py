@@ -79,11 +79,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'parking',
-        'USER': 'root',
-        'PASSWORD': '111111',
-        'HOST': '127.0.0.1',
-        'POST': '3306'
+        'NAME': 'car',  # DB명
+        'USER': 'group5',  # 데이터베이스 계정
+        'PASSWORD': 'group5',  # 계정 비밀번호
+        # 'HOST':'mysql-svc', # 데이테베이스 IP
+        'HOST': 'group5.c28c1htlg25e.ap-southeast-2.rds.amazonaws.com',  # 데이테베이스 IP
+        'PORT': '3306',  # 데이터베이스 port
     }
 }
 
