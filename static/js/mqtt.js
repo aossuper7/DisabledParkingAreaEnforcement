@@ -17,6 +17,12 @@ function onFailure() {
     console.log("접속 실패");
 }
 
+function sendMsg(msg, topic) {
+        message = new Paho.MQTT.Message(msg);
+        message.destinationName = topic;
+        mqtt.send(message);
+};
+
 function onMessageArrived(msg) {
     topic = msg.destinationName.split("/");
     message = msg.payloadString;
@@ -44,7 +50,7 @@ function onMessageArrived(msg) {
         empty += dicSpace[value];
     console.log(empty);
 
-    document.getElementById('allSapce').innerHTML = empty + "대";
+    document.getElementById('allSpace').innerHTML = empty + "대";
     empty = 0;
 }
 

@@ -43,15 +43,19 @@
 
     <link rel="stylesheet" href="{% static 'css/apex-charts.css' %}" />
 
-    <!-- Page CSS -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
 
     <!-- Helpers -->
     <script src="{% static 'js/helpers.js' %}"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js"></script>
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{% static 'js/config.js' %}"></script>
     <script src="{% static 'js/mqtt.js' %}"></script>
+    <script src="{% static 'js/alert.js' %}"></script>
+    <script src="{% static 'js/control.js' %}"></script>
   </head>
 
   <body>
@@ -110,7 +114,6 @@
                       </g>
                     </g>
                   </g>
-                </svg>
               </span>
               <span class="app-brand-text demo menu-text fw-bolder ms-2">주차장 관리</span>
             </a>
@@ -193,9 +196,24 @@
                                 <span style="font-size:20px; color:white;"><b>4</b></span>
                               </div>
                               <br><br>
-                              <div>
+                              <div style="font-size:25px">
                                 전체 4대 / <span id="allSapce">0대</span><br>
                                 장애 1대 / <span id="disability">0대</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-10 mb-4 order-0">
+                      <div class="card">
+                        <div class="d-flex align-items-end row">
+                          <div class="col-sm-13">
+                            <div class="card-body">
+                              <h5 class="card-title">출입 제어</h5>
+                              <div class="demo-inline-spacing">
+                                <button type="button" class="btn btn-primary" onclick="moterUpDown()">차단기 올리기</button>
+                                <button type="button" class="btn btn-primary" onclick="moterUpDown()">차단기 내리기</button>
                               </div>
                             </div>
                           </div>
