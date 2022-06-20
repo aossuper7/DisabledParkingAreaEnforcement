@@ -43,20 +43,15 @@
 
     <link rel="stylesheet" href="{% static 'css/apex-charts.css' %}" />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
-
-    <!-- JS -->
-    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+    <!-- Page CSS -->
 
     <!-- Helpers -->
     <script src="{% static 'js/helpers.js' %}"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="{% static 'js/config.js' %}"></script>
     <script src="{% static 'js/mqtt.js' %}"></script>
-    <script src="{% static 'js/alert.js' %}"></script>
-    <script src="{% static 'js/control.js' %}"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="{% static 'js/config.js' %}"></script>
   </head>
 
   <body>
@@ -135,15 +130,15 @@
               </a>
             </li>
 
-            <!-- Dashboard -->
-            <li class="menu-item active">
+               <!-- Dashboard -->
+            <li class="menu-item">
               <a href="/dashboard" class="menu-link">
                 <img src="{% static 'img/car_icon_126167.png' %}">
                 <div data-i18n="Analytics">&nbsp dashboard</div>
               </a>
             </li>
 
-            <li class="menu-item">
+            <li class="menu-item active">
               <a href="/enter" class="menu-link">
                 <img src="{% static 'img/1004739.png' %}">
                 <div data-i18n="Analytics">&nbsp 입차 차량 확인 </div>
@@ -170,60 +165,36 @@
 
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row">
-                <div class="col-lg-6 mb-4">
+                <div class="col-lg-11 mb-4 order-0">
                   <div class="card">
                     <div class="d-flex align-items-end row">
-                      <div class="col-sm-7">
+                      <div class="col-sm-12">
                         <div class="card-body">
-                          <h5 class="card-title">입차 차량</h5>
-                          <img src="#" id="enterCar" width="135%" height="400"/>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-md-4 order-1">
-                  <div class="row">
-                    <div class="col-lg-10 col-md-12 col-6 mb-4">
-                      <div class="card">
-                        <div class="card-body">
-                          <div class="card-title d-flex align-items-start justify-content-between">
-                            <div>
-                              <h5 class="card-title">주차 상황</h5>
-                              <div id="space1" style="background-color:blue; height:70px; width:70px; text-align:center; display:inline-block;">
-                                <span style="font-size:20px; color:white;"><b>1</b></span>
-                                <span><img src="{% static 'img/icons8-handicap-parking-32.png' %}" style="text-align:center"></span>
-                              </div>
-                              <div id="space2" style="background-color:blue; height:70px; width:70px; text-align:center; display:inline-block;">
-                                <span style="font-size:20px; color:white;"><b>2</b></span>
-                              </div>
-                              <div id="space3" style="background-color:blue; height:70px; width:70px; text-align:center; display:inline-block">
-                                <span style="font-size:20px; color:white;"><b>3</b></span>
-                              </div>
-                              <div id="space4" style="background-color:blue; height:70px; width:70px; text-align:center; display:inline-block">
-                                <span style="font-size:20px; color:white;"><b>4</b></span>
-                              </div>
-                              <br><br>
-                              <div style="font-size:25px">
-                                전체 4대 / <span id="allSapce">0대</span><br>
-                                장애 1대 / <span id="disability">0대</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-10 mb-4 order-0">
-                      <div class="card">
-                        <div class="d-flex align-items-end row">
-                          <div class="col-sm-13">
-                            <div class="card-body">
-                              <h5 class="card-title">출입 제어</h5>
-                              <div class="demo-inline-spacing">
-                                <button type="button" class="btn btn-primary" onclick="moterUpDown()">차단기 올리기</button>
-                                <button type="button" class="btn btn-primary" onclick="moterUpDown()">차단기 내리기</button>
-                              </div>
-                            </div>
+                          <h5 class="card-title">확인 필요</h5>
+                          <div class="table-responsive text-nowrap">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>차량 번호</th>
+                                  <th>장애인 유무</th>
+                                  <th>들어온 시간</th>
+                                  <th>차량 사진</th>
+                                </tr>
+                              </thead>
+                              <tbody class="table-border-bottom-0">
+                              {% for o in obj %}
+                              <tr>
+                                <td>{{o.car_number}}</td>
+                                <td>{{o.handicap}}</td>
+                                <td>{{o.enter}}</td>
+                                <td><img src="{{o.img}}" height="200" width="100%"></td>
+                              </tr>
+                              {% endfor %}
+                              </tbody>
+                              <tbody>
+
+                              </tbody>
+                            </table>
                           </div>
                         </div>
                       </div>

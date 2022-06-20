@@ -7,6 +7,10 @@ dicSpace['space2'];
 dicSpace['space3'];
 dicSpace['space4'];
 var empty = 0;
+var dicCarInfo = {};
+dicCarInfo['img'];
+dicCarInfo['number'];
+dicCarInfo['handicap'];
 
 function onConnect() {
     console.log("접속 성공");
@@ -29,6 +33,7 @@ function onMessageArrived(msg) {
 
     if(topic[1] == "img")
         document.getElementById("enterCar").src = "data:image/jpeg;base64,"+btoa(String.fromCharCode.apply(null,msg.payloadBytes));
+
     else if(topic[1] == "space1") {
         spaceColor(topic[1], message);
         dicSpace['space1'] = parseInt(message);
@@ -37,21 +42,55 @@ function onMessageArrived(msg) {
     else if(topic[1] == "space2") {
         spaceColor(topic[1], message);
         dicSpace['space2'] = parseInt(message);
+        carSpace();
     }
     else if(topic[1] == "space3") {
         spaceColor(topic[1], message);
         dicSpace['space3'] = parseInt(message);
+        carSpace();
     }
     else if(topic[1] == "space4") {
         spaceColor(topic[1], message);
         dicSpace['space4'] = parseInt(message);
+        carSpace();
     }
+
+    else if(topic[1] == "carimg") {
+        dicCarInfo['img'] = message;
+        console.log("이미지 경로 왔음");
+    }
+    else if(topic[1] == "carnumber") {
+        dicCarInfo['number'] = message;
+        console.log("차 번호 왔음");
+    }
+    else if(topic[1] == "carhandicap") {
+        dicCarInfo['handicap'] = message;
+        console.log("판별 유무 왔음");
+    }
+
+    if((dicCarInfo['img'] !== undefined) && (dicCarInfo['number'] !== undefined) && (dicCarInfo['handicap'] !== undefined)) {
+        $.ajax({
+            type:"GET",
+            url:"/dataset",
+            data:{"img":dicCarInfo['img'],
+                "number":dicCarInfo['number'],
+                "handicap":dicCarInfo['handicap']}
+        })
+
+        for (value in dicCarInfo) // 정보가 다 넘어 왔으면 초기화
+            dicCarInfo[value] = undefined;
+    }
+
+
+    empty = 0;
+}
+
+function carSpace() {
+    console.log("옴?");
     for(value in dicSpace)
         empty += dicSpace[value];
-    console.log(empty);
 
     document.getElementById('allSpace').innerHTML = empty + "대";
-    empty = 0;
 }
 
 function spaceColor(name, value) {
