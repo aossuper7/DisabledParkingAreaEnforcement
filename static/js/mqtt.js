@@ -62,6 +62,18 @@ function onMessageArrived(msg) {
     else if(topic[1] == "carnumber") {
         dicCarInfo['number'] = message;
         console.log("차 번호 왔음");
+        if((dicCarInfo['img'] == undefined) && (dicCarInfo['handicap'] == undefined)) {
+            $.ajax({
+            type:"GET",
+            url:"/numbercompare",
+            data:{"number":dicCarInfo['number']},
+            success: function(value) {
+                if (value['result'] == "0")
+                    pushNotify("error","불법차량 감지","장애인 주차구역에 일반차량 진입 차량번호 : "+dicCarInfo['number'], false);
+                    dicCarInfo['number'] = undefined;
+                }
+            })
+        }
     }
     else if(topic[1] == "carhandicap") {
         dicCarInfo['handicap'] = message;
@@ -81,12 +93,10 @@ function onMessageArrived(msg) {
             dicCarInfo[value] = undefined;
     }
 
-
     empty = 0;
 }
 
 function carSpace() {
-    console.log("옴?");
     for(value in dicSpace)
         empty += dicSpace[value];
 

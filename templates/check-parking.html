@@ -43,8 +43,11 @@
 
     <link rel="stylesheet" href="{% static 'css/apex-charts.css' %}" />
 
-    <!-- Page CSS -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
 
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
     <!-- Helpers -->
     <script src="{% static 'js/helpers.js' %}"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js"></script>
@@ -52,6 +55,7 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{% static 'js/config.js' %}"></script>
+    <script src="{% static 'js/alert.js' %}"></script>
   </head>
 
   <body>
@@ -179,6 +183,7 @@
                                   <th>장애인 유무</th>
                                   <th>들어온 시간</th>
                                   <th>차량 사진</th>
+                                  <th>수정</th>
                                 </tr>
                               </thead>
                               <tbody class="table-border-bottom-0">
@@ -187,7 +192,8 @@
                                 <td>{{o.car_number}}</td>
                                 <td>{{o.handicap}}</td>
                                 <td>{{o.enter}}</td>
-                                <td><img src="{{o.img}}" height="200" width="100%"></td>
+                                <td><img src="https://group5-s3.s3.ap-southeast-2.amazonaws.com/disable_img/{{o.img}}" height="200" width="100%"></td>
+                                <td></td>
                               </tr>
                               {% endfor %}
                               </tbody>
