@@ -211,8 +211,12 @@
                                 <td>{{o.car_number}}</td>
                                 <td>{{o.handicap}}</td>
                                 <td>{{o.enter}}</td>
-                                <td><button type="button" onclick="location.href='https://group5-s3.s3.ap-southeast-2.amazonaws.com/disable_img{{o.img}}'">차량 사진 보기</button></td>
-                                <td></td>
+                                <td>
+                                  <button type="button" class="btn btn-primary" onclick="location.href='/image/{{o.id}}'">차량 사진 보기</button>
+                                </td>
+                                <td>
+                                  <button type="button" class="btn btn-secondary" onclick="location.href='/handicapUpdate/{{o.id}}'">장애인 차량 확인</button>
+                                </td>
                               </tr>
                               {% endfor %}
                               </tbody>

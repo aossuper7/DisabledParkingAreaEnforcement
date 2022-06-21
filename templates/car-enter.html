@@ -204,6 +204,7 @@
                                   <th>장애인 유무</th>
                                   <th>들어온 시간</th>
                                   <th>차량 사진</th>
+                                  <th>수정</th>
                                 </tr>
                               </thead>
                               <tbody class="table-border-bottom-0">
@@ -212,7 +213,15 @@
                                 <td>{{o.car_number}}</td>
                                 <td>{{o.handicap}}</td>
                                 <td>{{o.enter}}</td>
-                                <td><button type="button" class="btn btn-primary" onclick="location.href='/image/{{o.id}}'">차량 사진 보기</button></td>
+                                <td>
+                                  <button type="button" class="btn btn-primary" onclick="location.href='/image/{{o.id}}'">차량 사진 보기</button>
+                                </td>
+                                <td>
+                                  <form action="/updateNumber/{{o.id}}" method="get">
+                                    <input type="text" class="form-control" name="carnumber" placeholder="번호 수정" size="2" maxlength="4" style="float:left; width:40%"/>
+                                    <button type="submit" class="btn btn-secondary" style="float:left; width:40%">수정하기</button>
+                                  </form>
+                                </td>
                               </tr>
                               {% endfor %}
                               </tbody>

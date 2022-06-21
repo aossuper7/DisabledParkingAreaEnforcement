@@ -1,8 +1,4 @@
-from django.contrib.auth import authenticate
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django_request_mapping import request_mapping
 from parkingLot.models import Parking
@@ -21,23 +17,23 @@ class MyView(View):
         try:
             obj = Parking.objects.filter(state="0").order_by('-id') #최신 순서로 나오게끔
             context = {'obj': obj}
+            return render(request, 'check-parking.html', context)
         except:
             print("db가져오기 실패")
-        return render(request, 'check-parking.html', context)
+
 
     @request_mapping("/enter", method="get")
     def enter(self, request):
         try:
             obj = Parking.objects.all().order_by('-id') #최신 순서로 나오게끔
             context = {'obj': obj}
+            return render(request, 'car-enter.html', context)
         except:
             print("db가져오기 실패")
-        return render(request, 'car-enter.html', context)
 
     @request_mapping("/dashboard", method="get")
     def dashboard(self, request):
         return render(request, 'dashboard.html')
-
 
     @request_mapping("/dataset", method="get")
     def dataset(self, request):
@@ -48,7 +44,6 @@ class MyView(View):
         date = now.strftime('%Y-%m-%d %H:%M:%S')
         try:
             Parking.objects.get(car_number=number).delete()
-            print("ddd")
             Parking.objects.create(img=img, car_number=number, handicap=handicap, enter=date).save()
         except:
             Parking.objects.create(img=img, car_number=number, handicap=handicap, enter=date).save()
@@ -93,3 +88,24 @@ class MyView(View):
             return render(request, 'image.html', {'context': obj})
         except:
             print("불러오기 실패")
+
+    @request_mapping("/updateNumber/<int:pk>", method="get")
+    def updateNumber(self, request, pk):
+        number = request.GET.get('carnumber')
+        try:
+            obj = Parking.objects.get(id=pk)
+            obj.car_number = number
+            obj.save()
+            return redirect("/enter")
+        except:
+            print("db 불러오기 실패")
+
+    @request_mapping("/handicapUpdate/<int:pk>", method="get")
+    def handicapUpdate(self, request, pk):
+        try:
+            obj = Parking.objects.get(id=pk)
+            obj.state = "1"
+            obj.save()
+            return redirect("/check")
+        except:
+            print("db 불러오기 실패")
