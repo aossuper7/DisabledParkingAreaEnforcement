@@ -68,9 +68,13 @@ function onMessageArrived(msg) {
             url:"/numbercompare",
             data:{"number":dicCarInfo['number']},
             success: function(value) {
-                if (value['result'] == "0")
+                if (value['result'] == "0") {// 불법차량인 경우
                     pushNotify("error","불법차량 감지","장애인 주차구역에 일반차량 진입 차량번호 : "+dicCarInfo['number'], false);
                     dicCarInfo['number'] = undefined;
+                    sendMsg('fail','parking/fail');
+                }else if(value['result'] == "1") // 정상차량인 경우
+                    dicCarInfo['number'] = undefined;
+                    sendMsg('ok', 'parking/ok');
                 }
             })
         }

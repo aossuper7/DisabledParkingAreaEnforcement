@@ -48,6 +48,7 @@
 
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- Helpers -->
     <script src="{% static 'js/helpers.js' %}"></script>
@@ -138,7 +139,7 @@
                <!-- Dashboard -->
             <li class="menu-item">
               <a href="/dashboard" class="menu-link">
-                <img src="{% static 'img/car_icon_126167.png' %}">
+                <img src="{% static 'img/icons8-dashboard-32.png' %}">
                 <div data-i18n="Analytics">&nbsp dashboard</div>
               </a>
             </li>
@@ -175,7 +176,7 @@
                     <div class="d-flex align-items-end row">
                       <div class="col-sm-12">
                         <div class="card-body">
-                          <h5 class="card-title">확인 필요</h5>
+                          <h5 class="card-title">입차 차량 조회</h5>
                           <div class="table-responsive text-nowrap">
                             <table class="table">
                               <thead>
@@ -192,7 +193,7 @@
                                 <td>{{o.car_number}}</td>
                                 <td>{{o.handicap}}</td>
                                 <td>{{o.enter}}</td>
-                                <td><button type="button" onclick="location.href='https://group5-s3.s3.ap-southeast-2.amazonaws.com/disable_img/{{o.img}}'">차량 사진 보기</button></td>
+                                <td><button type="button" class="btn btn-primary" onclick="location.href='/image/{{o.id}}'">차량 사진 보기</button></td>
                               </tr>
                               {% endfor %}
                               </tbody>

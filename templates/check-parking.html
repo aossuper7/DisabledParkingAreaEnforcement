@@ -137,7 +137,7 @@
                <!-- Dashboard -->
             <li class="menu-item">
               <a href="/dashboard" class="menu-link">
-                <img src="{% static 'img/car_icon_126167.png' %}">
+                <img src="{% static 'img/icons8-dashboard-32.png' %}">
                 <div data-i18n="Analytics">&nbsp dashboard</div>
               </a>
             </li>
@@ -192,7 +192,7 @@
                                 <td>{{o.car_number}}</td>
                                 <td>{{o.handicap}}</td>
                                 <td>{{o.enter}}</td>
-                                <td><button type="button" onclick="location.href='https://group5-s3.s3.ap-southeast-2.amazonaws.com/disable_img/{{o.img}}'">차량 사진 보기</button></td>
+                                <td><button type="button" onclick="location.href='https://group5-s3.s3.ap-southeast-2.amazonaws.com/disable_img{{o.img}}'">차량 사진 보기</button></td>
                                 <td></td>
                               </tr>
                               {% endfor %}

@@ -15,7 +15,7 @@ class MyView(View):
     @request_mapping("/check", method="get")
     def check_parking(self, request):
         try:
-            obj = Parking.objects.filter(state="0")
+            obj = Parking.objects.filter(state="0").order_by('-id') #최신 순서로 나오게끔
             context = {'obj': obj}
         except:
             print("db가져오기 실패")
@@ -24,7 +24,7 @@ class MyView(View):
     @request_mapping("/enter", method="get")
     def enter(self, request):
         try:
-            obj = Parking.objects.all()
+            obj = Parking.objects.all().order_by('-id') #최신 순서로 나오게끔
             context = {'obj': obj}
         except:
             print("db가져오기 실패")
@@ -43,10 +43,13 @@ class MyView(View):
         now = datetime.now()
         date = now.strftime('%Y-%m-%d %H:%M:%S')
         try:
-            Parking.objects.create(img=img, car_number=number, handicap=handicap,  enter=date).save()
-            print("db저장완료")
+            Parking.objects.get(car_number=number).delete()
+            print("ddd")
+            Parking.objects.create(img=img, car_number=number, handicap=handicap, enter=date).save()
         except:
-            print("db저장 실패")
+            Parking.objects.create(img=img, car_number=number, handicap=handicap, enter=date).save()
+        finally:
+            print("db 저장 완료")
 
         return JsonResponse({"result": 1})
 
@@ -78,3 +81,11 @@ class MyView(View):
             return JsonResponse({"result": 1})
         except:
             return JsonResponse({"result": 0})
+
+    @request_mapping("/image/<int:pk>", method="get")
+    def image(self, request, pk):
+        try:
+            obj = Parking.objects.get(id=pk)
+            return render(request, 'image.html', {'context': obj})
+        except:
+            print("불러오기 실패")
