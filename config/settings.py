@@ -28,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = [
+        'http://*.13.238.80.52',
+        'http://*.parking-check.com/',
+        ]
 
 # Application definition
 
