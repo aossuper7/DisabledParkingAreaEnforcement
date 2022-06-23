@@ -44,8 +44,10 @@ class MyView(View):
         date = now.strftime('%Y-%m-%d %H:%M:%S')
         try:
             Parking.objects.create(img=img, car_number=number, handicap=handicap, enter=date).save()
+            print("db 저장 성공")
         except:
-            print("db 저장 완료")
+            print("db 저장 실패")
+
 
         return JsonResponse({"result": 1})
 
