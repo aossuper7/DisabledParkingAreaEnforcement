@@ -33,7 +33,6 @@ function onMessageArrived(msg) {
     message = msg.payloadString;
 
     if(topic[1] == "img") {
-        console.log("ddd");
         document.getElementById("enterCar").src = "data:image/jpeg;base64,"+message;
     }
     else if(topic[1] == "space1") {
