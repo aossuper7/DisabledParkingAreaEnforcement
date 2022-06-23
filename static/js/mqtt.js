@@ -32,10 +32,12 @@ function onMessageArrived(msg) {
     topic = msg.destinationName.split("/");
     message = msg.payloadString;
 
-    if(topic[1] == "img")
-        document.getElementById("enterCar").src = "data:image/jpeg;base64,"+btoa(String.fromCharCode.apply(null,msg.payloadBytes));
-
+    if(topic[1] == "img") {
+        console.log("ddd");
+        document.getElementById("enterCar").src = "data:image/jpeg;base64,"+message;
+    }
     else if(topic[1] == "space1") {
+
         spaceColor(topic[1], message);
         dicSpace['space1'] = parseInt(message);
         document.getElementById("disability").innerHTML = dicSpace['space1'] + "대";
