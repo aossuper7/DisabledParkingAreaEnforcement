@@ -40,6 +40,7 @@ function onMessageArrived(msg) {
         spaceColor(topic[1], message);
         dicSpace['space1'] = parseInt(message);
         document.getElementById("disability").innerHTML = dicSpace['space1'] + "대";
+        carSpace();
     }
     else if(topic[1] == "space2") {
         spaceColor(topic[1], message);
@@ -62,15 +63,9 @@ function onMessageArrived(msg) {
         console.log("이미지 경로 왔음");
     }
     else if(topic[1] == "carnumber") {
-        for(step = 0; step < message.length; step++) { //번호판인지 체크
-            check = message.charCodeAt(step);
-            if (check >= 48 && check <= 57) { //번호판이면 ok
-                state += 1;
-                console.log(state);
-            }
-        }
-        if (!(state == 4))
-            pushNotify("error","차량번호 감지 Error","차량번호를 감지하지 못했습니다.", false);
+        if (message == "NULL")
+            pushNotify("error","차량번호 감지 Error",
+                        "차량번호를 감지하지 못했습니다.", false);
 
         dicCarInfo['number'] = message;
         console.log("차 번호 왔음");
@@ -82,13 +77,13 @@ function onMessageArrived(msg) {
             data:{"number":dicCarInfo['number']},
             success: function(value) {
                 if (value['result'] == "0") {// 불법차량인 경우
-                    pushNotify("error","불법차량 감지","장애인 주차구역에 일반차량 진입 차량번호 : "+dicCarInfo['number'], false);
-                    dicCarInfo['number'] = undefined;
+                    pushNotify("error","불법차량 감지","장애인 주차구역에 일반차량 진입 차량번호 : "+
+                                dicCarInfo['number'], false);
                     sendMsg('fail','parking/fail');
                 }else if(value['result'] == "1") {// 정상차량인 경우
-                    dicCarInfo['number'] = undefined;
                     sendMsg('ok', 'parking/ok');
                 }
+                dicCarInfo['number'] = undefined;
             }
             })
         }
@@ -98,7 +93,8 @@ function onMessageArrived(msg) {
         console.log("판별 유무 왔음");
     }
 
-    if((dicCarInfo['img'] !== undefined) && (dicCarInfo['number'] !== undefined) && (dicCarInfo['handicap'] !== undefined)) {
+    if((dicCarInfo['img'] !== undefined) && (dicCarInfo['number'] !== undefined)
+        && (dicCarInfo['handicap'] !== undefined)) {
         $.ajax({
             type:"GET",
             url:"/dataset",

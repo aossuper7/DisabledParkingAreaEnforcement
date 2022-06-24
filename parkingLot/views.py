@@ -48,7 +48,6 @@ class MyView(View):
         except:
             print("db 저장 실패")
 
-
         return JsonResponse({"result": 1})
 
     @request_mapping("/numbercompare", method="get")
@@ -103,6 +102,7 @@ class MyView(View):
     def handicapUpdate(self, request, pk):
         try:
             obj = Parking.objects.get(id=pk)
+            obj.handicap = "1"
             obj.state = "1"
             obj.save()
             return redirect("/check")
