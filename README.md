@@ -25,5 +25,4 @@
 - Raspberry Pi 장비 및 모형 제작  
 - 웹페이지 제작 및 DB연동 (Django 환경, MySQL ORM 사용)
 
-# [전체 소스코드, WBS, PPT 등 링크](https://drive.google.com/drive/folders/1SSiEPprD62wwLsntKh4JUHFOFTiqGvvh)
-
+# [전체 소스코드, WBS, PPT 발표자료 등 링크](https://drive.google.com/drive/folders/1SSiEPprD62wwLsntKh4JUHFOFTiqGvvh)
