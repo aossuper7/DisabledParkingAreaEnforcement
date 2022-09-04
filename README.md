@@ -58,7 +58,7 @@
 
 
 # 8팀중에 1등★  
-### 각 분야의 전문가님(총 4명) 평가와 8개의 팀 평가를 진행 하였음.
+### 각 분야의 전문가님(총 4명) 평가와 8개의 팀(약 100명) 평가를 진행 하였음.
 <img width="600" src="https://user-images.githubusercontent.com/12439450/188309756-2d107923-71f5-4a87-9660-0032263c9f51.jpg">
 
 # [전체 소스코드, WBS, PPT 발표자료, 실행 영상 등 링크](https://drive.google.com/drive/folders/1SSiEPprD62wwLsntKh4JUHFOFTiqGvvh)
