@@ -43,22 +43,20 @@
 
     <link rel="stylesheet" href="{% static 'css/apex-charts.css' %}" />
 
-    <!-- Page CSS -->
-
-    <!-- Helpers -->
-    <script src="{% static 'js/helpers.js' %}"></script>
-    <script src = "https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
 
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+
+    <!-- Helpers -->
+    <script src="{% static 'js/helpers.js' %}"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{% static 'js/config.js' %}"></script>
     <script src="{% static 'js/mqtt.js' %}"></script>
     <script src="{% static 'js/alert.js' %}"></script>
+    <script src="{% static 'js/control.js' %}"></script>
   </head>
 
   <body>
@@ -130,7 +128,7 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item active">
+            <li class="menu-item">
               <a href="/" class="menu-link">
                 <img src="{% static 'img/car_icon_126167.png' %}">
                 <div data-i18n="Analytics">&nbsp 주차 현황</div>
@@ -138,32 +136,32 @@
             </li>
 
             <!-- Dashboard -->
-            <li class="menu-item">
-              {% if request.user.is_authenticated %}
+            <li class="menu-item active">
+               {% if user.is_authenticated %}
               <a href="/dashboard" class="menu-link">
                 <img src="{% static 'img/icons8-dashboard-32.png' %}">
                 <div data-i18n="Analytics">&nbsp dashboard</div>
               </a>
-              {%endif%}
+               {%endif%}
             </li>
 
             <li class="menu-item">
-              {% if request.user.is_authenticated %}
+               {% if user.is_authenticated %}
               <a href="/enter" class="menu-link">
                 <img src="{% static 'img/1004739.png' %}">
                 <div data-i18n="Analytics">&nbsp 입차 차량 확인 </div>
               </a>
-              {%endif%}
+               {%endif%}
             </li>
 
             <!-- Layouts -->
             <li class="menu-item">
-              {% if request.user.is_authenticated %}
+                {% if user.is_authenticated %}
               <a href="/check" class="menu-link">
                 <img src="{% static 'img/1004739.png' %}">
                 <div data-i18n="Analytics">&nbsp 장애인 주차 확인 </div>
               </a>
-              {%endif%}
+               {%endif%}
             </li>
           </ul>
 
@@ -179,10 +177,8 @@
              </a>
               {% endif %}
            </div>
-
-
         </aside>
-        <!-- / Menu -->![](../../admin.png)
+        <!-- / Menu -->
 
         <!-- Layout container -->
         <div class="layout-page">
@@ -193,7 +189,19 @@
 
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row">
-                <div class="col-lg-12 col-md-4 order-1">
+                <div class="col-lg-6 mb-4">
+                  <div class="card">
+                    <div class="d-flex align-items-end row">
+                      <div class="col-sm-7">
+                        <div class="card-body">
+                          <h5 class="card-title">입차 차량</h5>
+                          <img src="#" id="enterCar" width="630" height="400"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 order-1">
                   <div class="row">
                     <div class="col-lg-10 col-md-12 col-6 mb-4">
                       <div class="card">
@@ -201,154 +209,38 @@
                           <div class="card-title align-items-start justify-content-between">
                             <div>
                               <h5 class="card-title">주차 상황</h5>
-                              <div id="parking1" style="background-color:blue; height:70px; width:70px; text-align:center; display:inline-block;">
-                                <span style="font-size:20px; color:white;"><b>1</b></span>
-                                <span><img src="{% static 'img/icons8-handicap-parking-32.png' %}" style="text-align:center"></span>
+                              <div id="space1" style="background-color:blue; height:70px; width:24%; text-align:center; float:left; display:inline-block; margin-right:3px">
+                                <span style="font-size:20px; color:white;"><b>1</b></span><br>
+                                <span><img src="{% static 'img/icons8-assistive-technology-32.png' %}" style="text-align:center"></span>
                               </div>
-                              <div id="parking2" style="background-color:blue; height:70px; width:70px; text-align:center; display:inline-block;">
+                              <div id="space2" style="background-color:blue; height:70px; width:24%; text-align:center; float:left; display:inline-block; margin-right:3px">
                                 <span style="font-size:20px; color:white;"><b>2</b></span>
                               </div>
-                              <div id="parking3" style="background-color:blue; height:70px; width:70px; text-align:center; display:inline-block">
+                              <div id="space3" style="background-color:blue; height:70px; width:24%; text-align:center; float:left; display:inline-block; margin-right:3px">
                                 <span style="font-size:20px; color:white;"><b>3</b></span>
                               </div>
-                              <div id="parking4" style="background-color:blue; height:70px; width:70px; text-align:center; display:inline-block">
+                              <div id="space4" style="background-color:blue; height:70px; width:24%; text-align:center; float:left; display:inline-block">
                                 <span style="font-size:20px; color:white;"><b>4</b></span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Total Revenue -->
-                <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
-                  <div class="card">
-                    <div class="row row-bordered g-0">
-                      <div class="col-md-8">
-                        <h5 class="card-header m-0 me-2 pb-3">Total Revenue</h5>
-                        <div id="totalRevenueChart" class="px-2"></div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="card-body">
-                          <div class="text-center">
-                            <div class="dropdown">
-                              <button
-                                class="btn btn-sm btn-outline-primary dropdown-toggle"
-                                type="button"
-                                id="growthReportId"
-                                data-bs-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                              >
-                                2022
-                              </button>
-                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
-                                <a class="dropdown-item" href="javascript:void(0);">2021</a>
-                                <a class="dropdown-item" href="javascript:void(0);">2020</a>
-                                <a class="dropdown-item" href="javascript:void(0);">2019</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div id="growthChart"></div>
-                        <div class="text-center fw-semibold pt-3 mb-2">62% Company Growth</div>
-
-                        <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
-                          <div class="d-flex">
-                            <div class="me-2">
-                              <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>
-                            </div>
-                            <div class="d-flex flex-column">
-                              <small>2022</small>
-                              <h6 class="mb-0">$32.5k</h6>
-                            </div>
-                          </div>
-                          <div class="d-flex">
-                            <div class="me-2">
-                              <span class="badge bg-label-info p-2"><i class="bx bx-wallet text-info"></i></span>
-                            </div>
-                            <div class="d-flex flex-column">
-                              <small>2021</small>
-                              <h6 class="mb-0">$41.2k</h6>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!--/ Total Revenue -->
-                <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
-                  <div class="row">
-                    <div class="col-6 mb-4">
-                      <div class="card">
-                        <div class="card-body">
-                          <div class="card-title d-flex align-items-start justify-content-between">
-                            <div class="avatar flex-shrink-0">
-                              <img src="../assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
-                            </div>
-                            <div class="dropdown">
-                              <button
-                                class="btn p-0"
-                                type="button"
-                                id="cardOpt4"
-                                data-bs-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                              >
-                                <i class="bx bx-dots-vertical-rounded"></i>
-                              </button>
-                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
-                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                              </div>
-                            </div>
-                          </div>
-                          <span class="d-block mb-1">Payments</span>
-                          <h3 class="card-title text-nowrap mb-2">$2,456</h3>
-                          <small class="text-danger fw-semibold"><i class="bx bx-down-arrow-alt"></i> -14.82%</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-6 mb-4">
-                      <div class="card">
-                        <div class="card-body">
-                          <div class="card-title d-flex align-items-start justify-content-between">
-                            <div class="avatar flex-shrink-0">
-                              <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
-                            </div>
-                            <div class="dropdown">
-                              <button
-                                class="btn p-0"
-                                type="button"
-                                id="cardOpt1"
-                                data-bs-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                              >
-                                <i class="bx bx-dots-vertical-rounded"></i>
-                              </button>
-                              <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                              <div id="space1" style="background-color:blue; height:200px; width:24.5%; text-align:center; float:left; display:inline-block; margin-right:5px">
-                                <span style="font-size:70px; color:white;"><b>1</b></span><br>
-                                <span><img src="{% static 'img/icons8-handicap-parking-32.png' %}" style="text-align:center"></span>
-                              </div>
-                              <div id="space2" style="background-color:blue; height:200px; width:24.5%; text-align:center; float:left; display:inline-block; margin-right:5px">
-                                <span style="font-size:70px; color:white;"><b>2</b></span>
-                              </div>
-                              <div id="space3" style="background-color:blue; height:200px; width:24.5%; text-align:center; float:left; display:inline-block; margin-right:5px">
-                                <span style="font-size:70px; color:white;"><b>3</b></span>
-                              </div>
-                              <div id="space4" style="background-color:blue; height:200px; width:24.5%; text-align:center; float:left; display:inline-block;">
-                                <span style="font-size:70px; color:white;"><b>4</b></span>
                               </div>
                               <br><br>
                               <div style="font-size:25px">
                                 전체 4대 / <span id="allSpace">0대</span><br>
                                 장애 1대 / <span id="disability">0대</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-10 mb-4 order-0">
+                      <div class="card">
+                        <div class="d-flex align-items-end row">
+                          <div class="col-sm-13">
+                            <div class="card-body">
+                              <h5 class="card-title">출입 제어</h5>
+                              <div class="demo-inline-spacing">
+                                <button type="button" class="btn btn-primary" onclick="moterUpDown('servo_on', 'iot/servo')">차단기 올리기</button>
+                                <button type="button" class="btn btn-primary" onclick="moterUpDown('servo_off', 'iot/servo')">차단기 내리기</button>
                               </div>
                             </div>
                           </div>
