@@ -22,7 +22,7 @@
 - 웹페이지 배포 (Amazon Route 53 -> NGINX -> docker)
 > ## IoT  
 - MQTT를 활용한 통신 환경 구축  
-- Raspberry Pi 장비 및 모형 제작  
+- Raspberry Pi와 각종 센서 연결 및 모형 제작  
 - 웹페이지 제작 및 DB연동 (Django 환경, MySQL ORM 사용)
 
 
