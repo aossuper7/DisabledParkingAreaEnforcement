@@ -39,4 +39,8 @@
 - 장애인 차량이 아닌 경우 - 경보를 울리며 차를 빼달라는 음성 출력(kakao API 사용), 관리자 웹 페이지에 위반차량 알림
 - 관라자 페이지에서 현재 입차 차량과 위반차량 모두 볼 수 있음.
 
+# 8개의 팀중에 1등  
+### 각 분야의 전문가님(총 4명) 평가와 8개의 팀 평가를 진행 하였음.
+<img width="600" src="https://user-images.githubusercontent.com/12439450/188309756-2d107923-71f5-4a87-9660-0032263c9f51.jpg">
+
 # [전체 소스코드, WBS, PPT 발표자료, 실행 영상 등 링크](https://drive.google.com/drive/folders/1SSiEPprD62wwLsntKh4JUHFOFTiqGvvh)
