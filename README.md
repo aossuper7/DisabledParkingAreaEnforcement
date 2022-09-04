@@ -7,7 +7,11 @@
 # 아키텍처 구성도
 <img width="944" alt="화면 캡처 2022-09-04 190922" src="https://user-images.githubusercontent.com/12439450/188308275-ae59f0cb-544a-425c-935c-470e8bf38a3e.png">
 
+# 라즈베리파이 연결도
+<img width="679" alt="화면 캡처 2022-09-04 233602" src="https://user-images.githubusercontent.com/12439450/188318977-98a1ed3e-d969-4100-9b19-f28c5a7f7443.png">
+
 # 사용 환경 및 역활
+공통 언어 <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white"/>
 > ## AI  
 - 학습 데이터 수집  
 - 데이터 전처리(augmentation)  
@@ -17,10 +21,11 @@
 - AI - IoT 파이프라인 구축  
 - 입지 분석
 > ## Cloud  
-- AWS Cloud 인프라 구축 (Amazon EC2)  
-- DataBase 구축 (MySQL)
-- 웹페이지 배포 (Amazon Route 53 -> NGINX -> docker)
+- AWS Cloud 인프라 구축 <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=flat-square&logo=Amazon EC2&logoColor=white"/>  
+- DataBase 구축 <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/>  
+- 웹페이지 배포 Amazon Route 53 -> <img src="https://img.shields.io/badge/NGINX-009639?style=flat-square&logo=NGINX&logoColor=white"/> -> <img src="https://img.shields.io/badge/Docker-#2496ED?style=flat-square&logo=docker&logoColor=white"/>
 > ## IoT  
+- <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/HTML-E34F26?style=flat-square&logo=HTML5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS-1572B6?style=flat-square&logo=CSS3&logoColor=white"/> <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=Bootstrap&logoColor=white"/> <img src="https://img.shields.io/badge/Raspberry Pi-A22846?style=flat-square&logo=Raspberry Pi&logoColor=white"/> <img src="https://img.shields.io/badge/Raspberry Pi-A22846?style=flat-square&logo=Raspberry Pi&logoColor=white"/> <img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=Django&logoColor=white"/>
 - MQTT를 활용한 통신 환경 구축  
 - Raspberry Pi와 각종 센서 연결 및 모형 제작  
 - 웹페이지 제작 및 DB연동 (Django 환경, Django ORM으로 DB사용)
