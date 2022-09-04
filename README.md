@@ -41,7 +41,23 @@
 - 장애인 차량이 아닌 경우 - 경보를 울리며 차를 빼달라는 음성 출력(kakao API 사용), 관리자 웹 페이지에 위반차량 알림
 - 관라자 페이지에서 현재 입차 차량과 위반차량 모두 볼 수 있음.
 
-# 8개의 팀중에 1등  
+# 프로젝트 시행 영상 gif 영상  
+#### 차량 번호, 얼굴 나오는것은 모자이크 처리 했습니다. 밑에 원본 링크 있으니 소리까지 들으시려면 링크로 이동하시면 됩니다.  
+#### 용량 때문에 화질과 프레임 낮게 나옵니다 ㅠ
+![시퀀스 01](https://user-images.githubusercontent.com/12439450/188315902-0f6854c0-61f7-46b7-8db1-f06e94946be2.gif)
+---
+![시퀀스 02](https://user-images.githubusercontent.com/12439450/188316695-bad74f70-4077-4f9e-8c52-58dd71444696.gif)
+---
+![시퀀스 03](https://user-images.githubusercontent.com/12439450/188317135-d605ed64-55f7-4425-993a-2ac091563cd3.gif)
+---
+![시퀀스 04](https://user-images.githubusercontent.com/12439450/188317276-f25ec477-456a-48a9-a932-f935d2947f49.gif)
+---
+![시퀀스 05](https://user-images.githubusercontent.com/12439450/188317526-7caabf3c-97b6-4373-a71a-76b98ad3c1bb.gif)
+---
+![시퀀스 06](https://user-images.githubusercontent.com/12439450/188317604-3526b1b7-d12c-4908-b23b-e362abd998b8.gif)
+
+
+# 8팀중에 1등★  
 ### 각 분야의 전문가님(총 4명) 평가와 8개의 팀 평가를 진행 하였음.
 <img width="600" src="https://user-images.githubusercontent.com/12439450/188309756-2d107923-71f5-4a87-9660-0032263c9f51.jpg">
 
