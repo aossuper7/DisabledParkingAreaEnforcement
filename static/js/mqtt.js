@@ -1,3 +1,7 @@
+var host = "3.25.85.102"
+var port = 9001;
+var mqtt;
+
 var host = "3.25.85.102";
 var port = 9001;
 var mqtt;
@@ -22,6 +26,11 @@ function onFailure() {
     console.log("접속 실패");
 }
 
+function onMessageArrived(msg) {
+    message = msg.destinationName.split("/");
+    if(message[1] == "img") {
+        document.getElementById("enterCar").src = "data:image/jpeg;base64,"+btoa(String.fromCharCode.apply(null,msg.payloadBytes));
+    }
 function sendMsg(msg, topic) {
         message = new Paho.MQTT.Message(msg);
         message.destinationName = topic;
@@ -127,11 +136,16 @@ function spaceColor(name, value) {
 
 function MQTTConnect() {
     console.log("mqtt접속"+host+"port");
+
     mqtt = new Paho.MQTT.Client(host,port,"javascript_client");
     var options = {
         timeout:3,
         onSuccess:onConnect,
         onFailure:onFailure,
+    }
+    mqtt.onMessageArrived = onMessageArrived;
+    mqtt.connect(options);
+}
     };
     mqtt.onMessageArrived = onMessageArrived;
     mqtt.connect(options);
